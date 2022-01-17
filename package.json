@@ -1,0 +1,17 @@
+{
+  "name": "art_generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Daniel Eugene Botha",
+  "license": "ISC",
+  "dependencies": {
+    "canvas": "^2.8.0",
+    "convert-excel-to-json": "^1.7.0",
+    "xlsx": "^0.17.5"
+  }
+}
