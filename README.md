@@ -1,61 +1,53 @@
 # Welcome to HashLips 👄
 
 Important: There is a new repo for this code.
-[https://github.com/HashLips/hashlips_art_engine](https://github.com/HashLips/hashlips_art_engine)
+[https://github.com/Baushaus-io/monkey-art-gen](https://github.com/Baushaus-io/monkey-art-gen)
 
 All the code in these repos was created and explained by HashLips on the main YouTube channel.
 
 To find out more please visit:
 
-[📺 YouTube](https://www.youtube.com/channel/UC1LV4_VQGBJHTJjEWUmy8nA)
+[📺 YouTube](https://www.youtube.com/channel/)
 
-[👄 Discord](https://discord.com/invite/qh6MWhMJDN)
+[👄 Discord](https://discord.gg/42fNEfpv)
 
-[💬 Telegram](https://t.me/hashlipsnft)
+[💬 Telegram](https://t.me/)
 
-[🐦 Twitter](https://twitter.com/hashlipsnft)
+[🐦 Twitter](https://twitter.com/)
 
-[ℹ️ Website](https://hashlips.online/HashLips)
+[ℹ️ Website](https://hashlips.online/)
 
 # generative-art-node
 
 Create generative art by using the canvas api and node js
 
-![](https://github.com/HashLips/generative-art-node/blob/main/src/preview.png)
-
 ## Installation
 
 ```sh
-git clone https://github.com/HashLips/generative-art-node
+git clone https://github.com/Baushaus-io/monkey-art-gen
 
 yarn install
 ```
 
 ## Usage
 
-Create your different layers as folders in the 'layers' directory, and add all the layer assets in these directories. Optionally, append '_r' and '_sr' to the layer file names to make those layer files rare or super rare respectively. 
-
-*Example:* If you had an ball layer you would create a ball directory, and then a file might be called:
-
-- `red_eye_ball_sr.png`
-- `red_eye_ball_r.png`
-- `red_eye_ball.png`
+Create your different layers as folders in the 'layers' directory, and add all the layer assets in these directories. Optionally, append '\_r' and '\_sr' to the layer file names to make those layer files rare or super rare respectively.
 
 > Rarity is customizable in `src/config.js`.
 
 Once you have all your layers, go into `src/config.js` and update the `layersOrder` array to be your layer folders name in order of the back layer to the front layer.
 
-*Example:* If you were creating a portrait design, you might have a background, then a head, a mouth, eyes, eyewear, and then headwear, so your `layersOrder` would look something like this:
+_Example:_ If you were creating a portrait design, you might have a background, then a head, a mouth, eyes, eyewear, and then headwear, so your `layersOrder` would look something like this:
 
 ```js
 const layersOrder = [
-    { name: 'background', number: 1 },
-    { name: 'ball', number: 2 },
-    { name: 'eye color', number: 12 },
-    { name: 'iris', number: 3 },
-    { name: 'shine', number: 1 },
-    { name: 'bottom lid', number: 3 },
-    { name: 'top lid', number: 3 },
+  { name: "background", number: 1 },
+  { name: "ball", number: 2 },
+  { name: "eye color", number: 12 },
+  { name: "iris", number: 3 },
+  { name: "shine", number: 1 },
+  { name: "bottom lid", number: 3 },
+  { name: "top lid", number: 3 },
 ];
 ```
 
