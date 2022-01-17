@@ -41,13 +41,18 @@ _Example:_ If you were creating a portrait design, you might have a background, 
 
 ```js
 const layersOrder = [
-  { name: "background", number: 1 },
-  { name: "ball", number: 2 },
-  { name: "eye color", number: 12 },
-  { name: "iris", number: 3 },
-  { name: "shine", number: 1 },
-  { name: "bottom lid", number: 3 },
-  { name: "top lid", number: 3 },
+  // MH for Must have, OP for Optional
+  { name: "background", type: "MH" },
+  { name: "base", type: "MH" },
+  { name: "eye", type: "MH" },
+  { name: "mouth", type: "MH" },
+  { name: "fur", type: "MH" },
+  { name: "holding", type: "MH" },
+
+  { name: "eyewear", type: "OP" },
+  { name: "clothing", type: "OP" },
+  { name: "headgear", type: "OP" },
+  { name: "earring", type: "OP" },
 ];
 ```
 
