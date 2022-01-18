@@ -12,6 +12,7 @@
   "dependencies": {
     "canvas": "^2.8.0",
     "convert-excel-to-json": "^1.7.0",
+    "object-hash": "^2.2.0",
     "xlsx": "^0.17.5"
   }
 }

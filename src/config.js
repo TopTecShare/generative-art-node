@@ -25,8 +25,6 @@ const rarity = [
   { key: "rare", val: 0.1 },
 ];
 
-const defaultEdition = 12000;
-
 const numberToProduce = {
   mh: 5,
   mh_o1: 4,
@@ -37,42 +35,69 @@ const numberToProduce = {
 
 const totalSupply = {
   mh: {
-    common: 2440,
-    uncommon: 1240,
-    rare: 640,
-    superrare: 800,
+    common: 24,
+    uncommon: 120,
+    rare: 6,
+    superrare: 80,
     legendary: 0,
   },
 
   mh_o1: {
-    common: 1830,
-    uncommon: 930,
-    rare: 480,
+    common: 180,
+    uncommon: 90,
+    rare: 40,
     superrare: 0,
-    legendary: 160,
+    legendary: 1,
   },
   mh_o2: {
-    common: 915,
-    uncommon: 465,
-    rare: 240,
+    common: 9,
+    uncommon: 4,
+    rare: 2,
     superrare: 0,
-    legendary: 100,
+    legendary: 1,
   },
   mh_o3: {
-    common: 610,
-    uncommon: 310,
-    rare: 160,
+    common: 60,
+    uncommon: 30,
+    rare: 1,
     superrare: 0,
-    legendary: 80,
+    legendary: 8,
   },
   mh_o4: {
-    common: 305,
-    uncommon: 155,
+    common: 30,
+    uncommon: 10,
     rare: 80,
     superrare: 0,
     legendary: 60,
   },
 };
+
+const defaultEdition =
+  totalSupply["mh"]["common"] +
+  totalSupply["mh"]["uncommon"] +
+  totalSupply["mh"]["rare"] +
+  totalSupply["mh"]["superrare"] +
+  totalSupply["mh"]["legendary"] +
+  totalSupply["mh_o1"]["common"] +
+  totalSupply["mh_o1"]["uncommon"] +
+  totalSupply["mh_o1"]["rare"] +
+  totalSupply["mh_o1"]["superrare"] +
+  totalSupply["mh_o1"]["legendary"] +
+  totalSupply["mh_o2"]["common"] +
+  totalSupply["mh_o2"]["uncommon"] +
+  totalSupply["mh_o2"]["rare"] +
+  totalSupply["mh_o2"]["superrare"] +
+  totalSupply["mh_o2"]["legendary"] +
+  totalSupply["mh_o3"]["common"] +
+  totalSupply["mh_o3"]["uncommon"] +
+  totalSupply["mh_o3"]["rare"] +
+  totalSupply["mh_o3"]["superrare"] +
+  totalSupply["mh_o3"]["legendary"] +
+  totalSupply["mh_o4"]["common"] +
+  totalSupply["mh_o4"]["uncommon"] +
+  totalSupply["mh_o4"]["rare"] +
+  totalSupply["mh_o4"]["superrare"] +
+  totalSupply["mh_o4"]["legendary"];
 
 const minRarity = {
   Common: 55,
