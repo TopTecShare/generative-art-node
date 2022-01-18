@@ -4,9 +4,18 @@ const reader = require("xlsx");
 const { createCanvas, loadImage } = require("canvas");
 const console = require("console");
 
-const { layersOrder, format, rarity, numberToProduce } = require("./config.js");
+const {
+  layersOrder,
+  format,
+  rarity,
+  numberToProduce,
+  totalSupply,
+  minRarity,
+  maxRarity,
+} = require("./config.js");
 const {
   eye,
+  base,
   mouth,
   fur,
   holding,
@@ -16,6 +25,7 @@ const {
   headgear,
   earring,
 } = require("./attribute");
+const { INSPECT_MAX_BYTES } = require("buffer");
 
 const canvas = createCanvas(format.width, format.height);
 const ctx = canvas.getContext("2d");
@@ -39,23 +49,6 @@ let attributes = [];
 let hash = [];
 let decodedHash = [];
 const Exists = new Map();
-
-// console.log(numberToProduce);
-
-// const sss = () => {
-//   const layers = layersSetup(layersOrder);
-
-//   layers.map((layer) => {
-//     layer.elements.map((el) => {
-//       if (layer.name == "earring") {
-//         console.log(el.name);
-//         const tmp = earring.filter((x) => x.element == el.name);
-//         console.log(tmp);
-//         Number(tmp[0]["wt"]);
-//       }
-//     });
-//   });
-// };
 
 const addRarity = (_str) => {
   let itemRarity;
@@ -164,52 +157,138 @@ const getLayerOrder = (__filename) => {
 let isFirstOptional = false;
 let prevOpt = 0;
 
-const drawLayer = async (_layer, _edition) => {
-  const rand = Math.random();
-  let element = _layer.elements[Math.floor(rand * _layer.number)]
-    ? _layer.elements[Math.floor(rand * _layer.number)]
-    : null;
-  if (element) {
-    let random = Math.floor(Math.random() * 100);
-    // const random = 80;
-    const layer = getLayerOrder(element.fileName);
-    // console.log(element.fileName, getLayerOrder(element.fileName));
-    if (
-      layer < 6 ||
-      (layer == 6 && random >= 40) ||
-      (layer == 7 && prevOpt == layer - 1 && random >= 70) ||
-      (layer == 8 && prevOpt == layer - 1 && random >= 85) ||
-      (layer == 9 && prevOpt == layer - 1 && random >= 95)
-    ) {
-      prevOpt = layer;
-      addAttributes(element, _layer);
-      isFirstOptional = true;
-      const image = await loadImage(`${_layer.location}${element.fileName}`);
+const drawLayer = async (_layer, _edition, _element) => {
+  let element = _element;
+  console.log(element);
 
-      ctx.drawImage(
-        image,
-        _layer.position.x,
-        _layer.position.y,
-        _layer.size.width,
-        _layer.size.height
-      );
-      saveLayer(canvas, _edition);
-    }
-  }
+  addAttributes(element, _layer);
+  const image = await loadImage(`${_layer.location}${element.name}.png`);
+
+  ctx.drawImage(
+    image,
+    _layer.position.x,
+    _layer.position.y,
+    _layer.size.width,
+    _layer.size.height
+  );
+  saveLayer(canvas, _edition);
 };
 
 const createFiles = async (edition) => {
-  const layers = layersSetup(layersOrder);
+  // generate MH tokens
+  const mhLayers = [
+    { name: "background", type: "MH" },
+    { name: "base", type: "MH" },
+    { name: "eye", type: "MH" },
+    { name: "mouth", type: "MH" },
+    { name: "fur", type: "MH" },
+    { name: "holding", type: "MH" },
+  ];
+  totalAmount = {
+    common: 0,
+    uncommon: 0,
+    rare: 0,
+    superrare: 0,
+    legendary: 0,
+  };
+  await generateRandomElement(mhLayers, "mh");
+  console.log("finish here");
+
+  const mh_o1Layers = [
+    { name: "background", type: "MH" },
+    { name: "base", type: "MH" },
+    { name: "eye", type: "MH" },
+    { name: "mouth", type: "MH" },
+    { name: "fur", type: "MH" },
+    { name: "holding", type: "MH" },
+
+    { name: "eyewear", type: "OP" },
+  ];
+  totalAmount = {
+    common: 0,
+    uncommon: 0,
+    rare: 0,
+    superrare: 0,
+    legendary: 0,
+  };
+  await generateRandomElement(mh_o1Layers, "mh_o1");
+  console.log("HERERERER");
+
+  const mh_o2Layers = [
+    { name: "background", type: "MH" },
+    { name: "base", type: "MH" },
+    { name: "eye", type: "MH" },
+    { name: "mouth", type: "MH" },
+    { name: "fur", type: "MH" },
+    { name: "holding", type: "MH" },
+
+    { name: "eyewear", type: "OP" },
+    { name: "clothing", type: "OP" },
+  ];
+  totalAmount = {
+    common: 0,
+    uncommon: 0,
+    rare: 0,
+    superrare: 0,
+    legendary: 0,
+  };
+  await generateRandomElement(mh_o2Layers, "mh_o2");
+
+  const mh_o3Layers = [
+    { name: "background", type: "MH" },
+    { name: "base", type: "MH" },
+    { name: "eye", type: "MH" },
+    { name: "mouth", type: "MH" },
+    { name: "fur", type: "MH" },
+    { name: "holding", type: "MH" },
+
+    { name: "eyewear", type: "OP" },
+    { name: "clothing", type: "OP" },
+    { name: "headgear", type: "OP" },
+  ];
+  totalAmount = {
+    common: 0,
+    uncommon: 0,
+    rare: 0,
+    superrare: 0,
+    legendary: 0,
+  };
+  await generateRandomElement(mh_o3Layers, "mh_o3");
+
+  const mh_o4Layers = [
+    { name: "background", type: "MH" },
+    { name: "base", type: "MH" },
+    { name: "eye", type: "MH" },
+    { name: "mouth", type: "MH" },
+    { name: "fur", type: "MH" },
+    { name: "holding", type: "MH" },
+
+    { name: "eyewear", type: "OP" },
+    { name: "clothing", type: "OP" },
+    { name: "headgear", type: "OP" },
+    { name: "earring", type: "OP" },
+  ];
+  totalAmount = {
+    common: 0,
+    uncommon: 0,
+    rare: 0,
+    superrare: 0,
+    legendary: 0,
+  };
+  await generateRandomElement(mh_o4Layers, "mh_o4");
+
+  await shuffleArray(initialMetaData);
 
   let numDupes = 0;
-  for (let i = 1; i <= edition; i++) {
-    await layers.forEach(async (layer) => {
-      await drawLayer(layer, i);
-    });
 
-    console.log(attributes);
-    const rarity = await checkRarity(attributes);
-    prevOpt = 0;
+  const layers = layersSetup(layersOrder);
+
+  for (let i = 1; i <= edition; i++) {
+    console.log(initialMetaData[i]);
+    await layers.forEach(async (layer) => {
+      let element = initialMetaData[i].filter((x) => x.layer == layer.name)[0];
+      if (element) await drawLayer(layer, i, element);
+    });
 
     let key = hash.toString();
     if (Exists.has(key)) {
@@ -229,9 +308,106 @@ const createFiles = async (edition) => {
   }
 };
 
-const checkRarity = (attributes) => {
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+let totalAmount;
+
+let initialMetaData = [];
+
+const generateRandomElement = (_layers, _class) => {
+  const layers = layersSetup(_layers);
+  let tmpElements = [];
+
+  do {
+    layers.forEach((layer) => {
+      // if (layer.name == "mouth") console.log("MOUTH", layer.number);
+      let rand = Math.random();
+      let num = Math.floor(rand * layer.number);
+
+      if (
+        totalAmount["common"] >= totalSupply[_class]["common"] &&
+        totalAmount["uncommon"] >= totalSupply[_class]["uncommon"] &&
+        totalAmount["rare"] >= totalSupply[_class]["rare"]
+      )
+        num = layer.number - Math.floor(rand * 4) - 1;
+      if (num < 1) num = 1;
+
+      let obj = {
+        eye: eye,
+        base: base,
+        mouth: mouth,
+        fur: fur,
+        holding: holding,
+        background: background,
+        eyewear: eyewear,
+        clothing: clothing,
+        headgear: headgear,
+        earring: earring,
+      };
+      // console.log(layer.name);
+
+      let el = obj[layer.name].filter((x) => x.id == num)[0];
+      if (el) {
+        let tempAttr = {
+          id: el.id,
+          layer: layer.name,
+          name: el.element,
+          rarity: el.wt,
+        };
+        // console.log(layer.name);
+        tmpElements.push(tempAttr);
+      } else {
+        console.log(layer.name, num);
+      }
+    });
+
+    // console.log(" ");
+
+    const type = checkRarity(tmpElements);
+    // if (type == "rare")
+    // console.log(_class);
+    if (totalAmount[type] < totalSupply[_class][type]) {
+      // console.log("RARE!!!!          ", totalSupply[_class][type]);
+
+      // console.log(type);
+      totalAmount[type] = Number(totalAmount[type]) + 1;
+      initialMetaData.push([
+        { id: 1, layer: "base", name: "base", rarity: "0" },
+        ...tmpElements,
+      ]);
+      const tmpObj = {
+        rarity: type,
+        elements: tmpElements,
+      };
+    }
+
+    console.log(totalAmount, type);
+    // console.log();
+
+    tmpElements = [];
+    // console.log(totalSupply[_class]);
+    if (
+      totalAmount["common"] >= totalSupply[_class]["common"] &&
+      totalAmount["uncommon"] >= totalSupply[_class]["uncommon"] &&
+      totalAmount["rare"] >= totalSupply[_class]["rare"] &&
+      totalAmount["superrare"] >= totalSupply[_class]["superrare"] &&
+      totalAmount["legendary"] >= totalSupply[_class]["legendary"]
+    )
+      break;
+  } while (1);
+
+  // console.log(initialMetaData);
+};
+
+const checkRarity = (_attributes) => {
+  // console.log("ATTRIBUTES", _attributes);
   let rarity = 0;
-  attributes.map((el) => {
+  _attributes.map((el) => {
     if (el.layer == "background") {
       const tmp = background.filter((x) => x.element == el.name);
       rarity += Number(tmp[0]["wt"]);
@@ -242,14 +418,17 @@ const checkRarity = (attributes) => {
     }
     if (el.layer == "mouth") {
       const tmp = mouth.filter((x) => x.element == el.name);
+
       rarity += Number(tmp[0]["wt"]);
     }
     if (el.layer == "fur") {
       const tmp = fur.filter((x) => x.element == el.name);
+
       rarity += Number(tmp[0]["wt"]);
     }
     if (el.layer == "holding") {
       const tmp = holding.filter((x) => x.element == el.name);
+
       rarity += Number(tmp[0]["wt"]);
     }
     if (el.layer == "eyewear") {
@@ -270,11 +449,17 @@ const checkRarity = (attributes) => {
     }
   });
 
-  if (rarity > 55 && rarity < 200) return "Common";
-  if (rarity > 201 && rarity < 400) return "Uncommon";
-  if (rarity > 401 && rarity < 850) return "Rare";
-  if (rarity > 851 && rarity < 1000) return "Superrare";
-  if (rarity > 1001 && rarity < 1597) return "Legendary";
+  // console.log("RARITY", rarity);
+
+  if (rarity >= minRarity["Common"] && rarity <= maxRarity["Common"])
+    return "common";
+  if (rarity >= minRarity["Uncommon"] && rarity <= maxRarity["Uncommon"])
+    return "uncommon";
+  if (rarity >= minRarity["Rare"] && rarity <= maxRarity["Rare"]) return "rare";
+  if (rarity >= minRarity["Superrare"] && rarity <= maxRarity["Superrare"])
+    return "superrare";
+  if (rarity >= minRarity["Legendary"] && rarity <= maxRarity["Legendary"])
+    return "legendary";
 };
 
 const createMetaData = () => {

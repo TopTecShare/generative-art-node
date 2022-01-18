@@ -35,10 +35,68 @@ const numberToProduce = {
   mh_o4: 1,
 };
 
+const totalSupply = {
+  mh: {
+    common: 2440,
+    uncommon: 1240,
+    rare: 640,
+    superrare: 800,
+    legendary: 0,
+  },
+
+  mh_o1: {
+    common: 1830,
+    uncommon: 930,
+    rare: 480,
+    superrare: 0,
+    legendary: 160,
+  },
+  mh_o2: {
+    common: 915,
+    uncommon: 465,
+    rare: 240,
+    superrare: 0,
+    legendary: 100,
+  },
+  mh_o3: {
+    common: 610,
+    uncommon: 310,
+    rare: 160,
+    superrare: 0,
+    legendary: 80,
+  },
+  mh_o4: {
+    common: 305,
+    uncommon: 155,
+    rare: 80,
+    superrare: 0,
+    legendary: 60,
+  },
+};
+
+const minRarity = {
+  Common: 55,
+  Uncommon: 201,
+  Rare: 401,
+  Superrare: 851,
+  Legendary: 1001,
+};
+
+const maxRarity = {
+  Common: 200,
+  Uncommon: 400,
+  Rare: 850,
+  Superrare: 1000,
+  Legendary: 1597,
+};
+
 module.exports = {
   layersOrder,
   format,
   rarity,
   defaultEdition,
   numberToProduce,
+  totalSupply,
+  minRarity,
+  maxRarity,
 };

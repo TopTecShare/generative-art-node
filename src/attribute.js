@@ -280,7 +280,10 @@ const earring = [
   { id: "8", wt: "158", element: "mm diamond stud" },
 ];
 
+const base = [{ id: 1, wt: 0, element: "base" }];
+
 module.exports = {
+  base,
   eye,
   mouth,
   fur,
