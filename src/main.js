@@ -319,6 +319,17 @@ let totalAmount;
 
 let initialMetaData = [];
 
+const redRestriction = {
+  mouth: { cigarette: true, joint: true, cigar: true },
+  holding: { vape: true, cigar: true },
+};
+
+const brownRestriction = {
+  mouth: { "ninja mask": true, "hannya mask": true },
+};
+
+let mouthElement = null;
+
 const generateRandomElement = (_layers, _class) => {
   const layers = layersSetup(_layers);
   let tmpElements = [];
@@ -353,14 +364,50 @@ const generateRandomElement = (_layers, _class) => {
 
       let el = obj[layer.name].filter((x) => x.id == num)[0];
       if (el) {
+        // if (layer.name == "mouth") {
+        //   mouthElement = el;
+        // }
+        // // Check if it's Holding layer: RED RESCTRICTION
+        // if (
+        //   layer.name == "holding" &&
+        //   redRestriction["holding"][el.name] &&
+        //   redRestriction["mouth"][mouthElement.name]
+        // ) {
+        //   console.log("RED RESTRICTION", tmpElements);
+        //   throw "new";
+        //   return;
+        // }
+        // // Delete Optional for Ninja mask and hannya mask: BROWN RESTRICTION
+        // if (_class !== "mh" && brownRestriction["mouth"][mouthElement.name]) {
+        //   console.log("BROWN RESTRICTION", tmpElements);
+        //   throw "new";
+        //   return;
+        // }
+
         let tempAttr = {
           id: el.id,
           layer: layer.name,
           name: el.element,
           rarity: el.wt,
         };
-        // console.log(layer.name);
-        tmpElements.push(tempAttr);
+
+        // BROWN RESTRICTION
+        // if (brownRestriction["mouth"][mouthElement.name])
+        const first = {
+          name: "default",
+          ...tmpElements.filter((x) => x.layer == "mouth")[0],
+        };
+
+        const brown =
+          brownRestriction["mouth"][first.name] &&
+          { eyewear: true, clothing: true, headgear: true, earrings: true }[
+            layer.name
+          ];
+        if (!brown) tmpElements.push(tempAttr);
+        else {
+          console.log("BROWN RESTRICTION DETECTED!");
+          console.log(first);
+        }
       } else {
         console.log(layer.name, num);
       }
@@ -371,7 +418,21 @@ const generateRandomElement = (_layers, _class) => {
     const type = checkRarity(tmpElements);
     // if (type == "rare")
     // console.log(_class);
-    if (totalAmount[type] < totalSupply[_class][type]) {
+
+    // RED RESTRICTION
+    // tmpElements -> true
+    const first = tmpElements.filter((x) => x.layer == "mouth")[0];
+    const second = tmpElements.filter((x) => x.layer == "holding")[0];
+    const red =
+      redRestriction["mouth"][first.name] &&
+      redRestriction["holding"][second.name];
+    if (red) {
+      console.log("RED RESTRCTION DETECTED!");
+      console.log(first);
+      console.log(second);
+    }
+
+    if (totalAmount[type] < totalSupply[_class][type] && !red) {
       // console.log("RARE!!!!          ", totalSupply[_class][type]);
 
       // console.log(type);
@@ -390,6 +451,7 @@ const generateRandomElement = (_layers, _class) => {
     // console.log();
 
     tmpElements = [];
+    mouthElement = null;
     // console.log(totalSupply[_class]);
     if (
       totalAmount["common"] >= totalSupply[_class]["common"] &&
