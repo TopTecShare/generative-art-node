@@ -284,9 +284,10 @@ const createFiles = async (edition) => {
   const layers = layersSetup(layersOrder);
 
   for (let i = 1; i <= edition; i++) {
-    console.log(initialMetaData[i]);
     await layers.forEach(async (layer) => {
-      let element = initialMetaData[i].filter((x) => x.layer == layer.name)[0];
+      let element = initialMetaData[i - 1].filter(
+        (x) => x.layer == layer.name
+      )[0];
       if (element) await drawLayer(layer, i, element);
     });
 
