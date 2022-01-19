@@ -25,8 +25,6 @@ const rarity = [
   { key: "rare", val: 0.1 },
 ];
 
-const defaultEdition = 12000;
-
 const numberToProduce = {
   mh: 5,
   mh_o1: 4,
@@ -90,6 +88,33 @@ const maxRarity = {
   Superrare: 1000,
   Legendary: 1597,
 };
+
+const defaultEdition =
+  totalSupply["mh"]["common"] +
+  totalSupply["mh"]["uncommon"] +
+  totalSupply["mh"]["rare"] +
+  totalSupply["mh"]["superrare"] +
+  totalSupply["mh"]["legendary"] +
+  totalSupply["mh_o1"]["common"] +
+  totalSupply["mh_o1"]["uncommon"] +
+  totalSupply["mh_o1"]["rare"] +
+  totalSupply["mh_o1"]["superrare"] +
+  totalSupply["mh_o1"]["legendary"] +
+  totalSupply["mh_o2"]["common"] +
+  totalSupply["mh_o2"]["uncommon"] +
+  totalSupply["mh_o2"]["rare"] +
+  totalSupply["mh_o2"]["superrare"] +
+  totalSupply["mh_o2"]["legendary"] +
+  totalSupply["mh_o3"]["common"] +
+  totalSupply["mh_o3"]["uncommon"] +
+  totalSupply["mh_o3"]["rare"] +
+  totalSupply["mh_o3"]["superrare"] +
+  totalSupply["mh_o3"]["legendary"] +
+  totalSupply["mh_o4"]["common"] +
+  totalSupply["mh_o4"]["uncommon"] +
+  totalSupply["mh_o4"]["rare"] +
+  totalSupply["mh_o4"]["superrare"] +
+  totalSupply["mh_o4"]["legendary"];
 
 module.exports = {
   layersOrder,

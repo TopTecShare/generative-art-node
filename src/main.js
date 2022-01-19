@@ -351,7 +351,7 @@ const generateRandomElement = (_layers, _class) => {
         totalAmount["uncommon"] >= totalSupply[_class]["uncommon"] &&
         totalAmount["rare"] >= totalSupply[_class]["rare"]
       )
-        num = layer.number - Math.floor(rand * 4) - 1;
+        num = layer.number - Math.floor(rand * 12);
       if (num < 1) num = 1;
 
       let obj = {
