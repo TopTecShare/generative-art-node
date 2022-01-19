@@ -34,14 +34,6 @@ const numberToProduce = {
 };
 const defaultEdition = 12000;
 
-const numberToProduce = {
-  mh: 5,
-  mh_o1: 4,
-  mh_o2: 3,
-  mh_o3: 2,
-  mh_o4: 1,
-};
-
 const totalSupply = {
   mh: {
     common: 2440,
