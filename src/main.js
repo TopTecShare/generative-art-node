@@ -351,7 +351,7 @@ const generateRandomElement = (_layers, _class) => {
         totalAmount["uncommon"] >= totalSupply[_class]["uncommon"] &&
         totalAmount["rare"] >= totalSupply[_class]["rare"]
       )
-        num = layer.number - Math.floor(rand * 12);
+        num = layer.number - Math.floor(rand * 4);
       if (num < 1) num = 1;
 
       let obj = {
@@ -407,8 +407,14 @@ const generateRandomElement = (_layers, _class) => {
 
     // RED RESTRICTION
     // tmpElements -> true
-    const first = tmpElements.filter((x) => x.layer == "mouth")[0];
-    const second = tmpElements.filter((x) => x.layer == "holding")[0];
+    const first = {
+      name: "default",
+      ...tmpElements.filter((x) => x.layer == "mouth")[0],
+    };
+    const second = {
+      name: "default",
+      ...tmpElements.filter((x) => x.layer == "holding")[0],
+    };
     const red =
       redRestriction["mouth"][first.name] &&
       redRestriction["holding"][second.name];

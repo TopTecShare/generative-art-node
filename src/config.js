@@ -39,7 +39,7 @@ const totalSupply = {
     common: 2440,
     uncommon: 1240,
     rare: 640,
-    superrare: 800,
+    superrare: 576,
     legendary: 0,
   },
 
@@ -47,7 +47,7 @@ const totalSupply = {
     common: 1830,
     uncommon: 930,
     rare: 480,
-    superrare: 0,
+    superrare: 224,
     legendary: 160,
   },
   mh_o2: {
