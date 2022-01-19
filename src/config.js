@@ -32,7 +32,7 @@ const numberToProduce = {
   mh_o3: 2,
   mh_o4: 1,
 };
-const defaultEdition = 12000;
+// const defaultEdition = 12000;
 
 const totalSupply = {
   mh: {
