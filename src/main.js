@@ -284,6 +284,7 @@ const createFiles = async (edition) => {
   const layers = layersSetup(layersOrder);
 
   for (let i = 1; i <= edition; i++) {
+    console.log(initialMetaData[i - 1]);
     await layers.forEach(async (layer) => {
       let element = initialMetaData[i - 1].filter(
         (x) => x.layer == layer.name
@@ -320,6 +321,8 @@ let totalAmount;
 
 let initialMetaData = [];
 
+let hashValue = {};
+
 const redRestriction = {
   mouth: { cigarette: true, joint: true, cigar: true },
   holding: { vape: true, cigar: true },
@@ -333,6 +336,8 @@ let mouthElement = null;
 
 const generateRandomElement = (_layers, _class) => {
   const layers = layersSetup(_layers);
+  const hash = require("object-hash");
+
   let tmpElements = [];
 
   do {
@@ -365,26 +370,6 @@ const generateRandomElement = (_layers, _class) => {
 
       let el = obj[layer.name].filter((x) => x.id == num)[0];
       if (el) {
-        // if (layer.name == "mouth") {
-        //   mouthElement = el;
-        // }
-        // // Check if it's Holding layer: RED RESCTRICTION
-        // if (
-        //   layer.name == "holding" &&
-        //   redRestriction["holding"][el.name] &&
-        //   redRestriction["mouth"][mouthElement.name]
-        // ) {
-        //   console.log("RED RESTRICTION", tmpElements);
-        //   throw "new";
-        //   return;
-        // }
-        // // Delete Optional for Ninja mask and hannya mask: BROWN RESTRICTION
-        // if (_class !== "mh" && brownRestriction["mouth"][mouthElement.name]) {
-        //   console.log("BROWN RESTRICTION", tmpElements);
-        //   throw "new";
-        //   return;
-        // }
-
         let tempAttr = {
           id: el.id,
           layer: layer.name,
@@ -437,6 +422,8 @@ const generateRandomElement = (_layers, _class) => {
       // console.log("RARE!!!!          ", totalSupply[_class][type]);
 
       // console.log(type);
+      if (hashValue[hash(tmpElements)]) continue;
+      hashValue[hash(tmpElements)] = true;
       totalAmount[type] = Number(totalAmount[type]) + 1;
       initialMetaData.push([
         { id: 1, layer: "base", name: "base", rarity: "0" },
