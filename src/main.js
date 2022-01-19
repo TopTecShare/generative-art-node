@@ -332,6 +332,11 @@ const brownRestriction = {
   mouth: { "ninja mask": true, "hannya mask": true },
 };
 
+const greenRestriction = {
+  eye: { "snake eyes": true },
+  fur: { "lime crystal": true },
+};
+
 let mouthElement = null;
 
 const generateRandomElement = (_layers, _class) => {
@@ -401,7 +406,24 @@ const generateRandomElement = (_layers, _class) => {
 
     // console.log(" ");
 
-    const type = checkRarity(tmpElements);
+    let type = checkRarity(tmpElements);
+    const greenEye = {
+      name: "default",
+      ...tmpElements.filter((x) => x.layer == "eye")[0],
+    };
+
+    const greenFur = {
+      name: "default",
+      ...tmpElements.filter((x) => x.layer == "fur")[0],
+    };
+
+    const green =
+      greenRestriction["eye"][greenEye.name] ||
+      greenRestriction["fur"][greenFur.name];
+    if (green) {
+      type = { rare: "superrare" }[type];
+    }
+
     // if (type == "rare")
     // console.log(_class);
 
