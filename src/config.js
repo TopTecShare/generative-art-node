@@ -2,20 +2,19 @@ const layersOrder = [
   // MH for Must have, OP for Optional
   { name: "background", type: "MH" },
   { name: "base", type: "MH" },
+  { name: "fur", type: "MH" },
+  { name: "clothing", type: "OP" },
   { name: "eye", type: "MH" },
   { name: "mouth", type: "MH" },
-  { name: "fur", type: "MH" },
-  { name: "holding", type: "MH" },
-
   { name: "eyewear", type: "OP" },
-  { name: "clothing", type: "OP" },
-  { name: "headgear", type: "OP" },
   { name: "earring", type: "OP" },
+  { name: "headgear", type: "OP" },
+  { name: "holding", type: "MH" },
 ];
 
 const format = {
-  width: 250,
-  height: 250,
+  width: 1000,
+  height: 1000,
 };
 
 const rarity = [

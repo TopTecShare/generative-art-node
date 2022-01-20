@@ -179,9 +179,9 @@ const createFiles = async (edition) => {
   const mhLayers = [
     { name: "background", type: "MH" },
     { name: "base", type: "MH" },
+    { name: "fur", type: "MH" },
     { name: "eye", type: "MH" },
     { name: "mouth", type: "MH" },
-    { name: "fur", type: "MH" },
     { name: "holding", type: "MH" },
   ];
   totalAmount = {
@@ -197,12 +197,11 @@ const createFiles = async (edition) => {
   const mh_o1Layers = [
     { name: "background", type: "MH" },
     { name: "base", type: "MH" },
+    { name: "fur", type: "MH" },
     { name: "eye", type: "MH" },
     { name: "mouth", type: "MH" },
-    { name: "fur", type: "MH" },
-    { name: "holding", type: "MH" },
-
     { name: "eyewear", type: "OP" },
+    { name: "holding", type: "MH" },
   ];
   totalAmount = {
     common: 0,
@@ -217,13 +216,12 @@ const createFiles = async (edition) => {
   const mh_o2Layers = [
     { name: "background", type: "MH" },
     { name: "base", type: "MH" },
+    { name: "fur", type: "MH" },
+    { name: "clothing", type: "OP" },
     { name: "eye", type: "MH" },
     { name: "mouth", type: "MH" },
-    { name: "fur", type: "MH" },
-    { name: "holding", type: "MH" },
-
     { name: "eyewear", type: "OP" },
-    { name: "clothing", type: "OP" },
+    { name: "holding", type: "MH" },
   ];
   totalAmount = {
     common: 0,
@@ -237,14 +235,13 @@ const createFiles = async (edition) => {
   const mh_o3Layers = [
     { name: "background", type: "MH" },
     { name: "base", type: "MH" },
+    { name: "fur", type: "MH" },
+    { name: "clothing", type: "OP" },
     { name: "eye", type: "MH" },
     { name: "mouth", type: "MH" },
-    { name: "fur", type: "MH" },
-    { name: "holding", type: "MH" },
-
     { name: "eyewear", type: "OP" },
-    { name: "clothing", type: "OP" },
     { name: "headgear", type: "OP" },
+    { name: "holding", type: "MH" },
   ];
   totalAmount = {
     common: 0,
@@ -258,15 +255,14 @@ const createFiles = async (edition) => {
   const mh_o4Layers = [
     { name: "background", type: "MH" },
     { name: "base", type: "MH" },
+    { name: "fur", type: "MH" },
+    { name: "clothing", type: "OP" },
     { name: "eye", type: "MH" },
     { name: "mouth", type: "MH" },
-    { name: "fur", type: "MH" },
-    { name: "holding", type: "MH" },
-
     { name: "eyewear", type: "OP" },
-    { name: "clothing", type: "OP" },
-    { name: "headgear", type: "OP" },
     { name: "earring", type: "OP" },
+    { name: "headgear", type: "OP" },
+    { name: "holding", type: "MH" },
   ];
   totalAmount = {
     common: 0,
