@@ -1,21 +1,9 @@
-# Welcome to HashLips 👄
+# Welcome to Monkey
 
 Important: There is a new repo for this code.
 [https://github.com/Baushaus-io/monkey-art-gen](https://github.com/Baushaus-io/monkey-art-gen)
 
 All the code in these repos was created and explained by HashLips on the main YouTube channel.
-
-To find out more please visit:
-
-[📺 YouTube](https://www.youtube.com/channel/)
-
-[👄 Discord](https://discord.gg/42fNEfpv)
-
-[💬 Telegram](https://t.me/)
-
-[🐦 Twitter](https://twitter.com/)
-
-[ℹ️ Website](https://hashlips.online/)
 
 # generative-art-node
 
