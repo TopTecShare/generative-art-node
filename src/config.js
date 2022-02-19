@@ -33,6 +33,45 @@ const numberToProduce = {
 };
 // const defaultEdition = 12000;
 
+// const totalSupply = {
+//   mh: {
+//     common: 12,
+//     uncommon: 6,
+//     rare: 2,
+//     superrare: 1,
+//     legendary: 0,
+//   },
+
+//   mh_o1: {
+//     common: 9,
+//     uncommon: 4,
+//     rare: 2,
+//     superrare: 0,
+//     legendary: 1,
+//   },
+//   mh_o2: {
+//     common: 4,
+//     uncommon: 2,
+//     rare: 1,
+//     superrare: 0,
+//     legendary: 1,
+//   },
+//   mh_o3: {
+//     common: 3,
+//     uncommon: 1,
+//     rare: 1,
+//     superrare: 0,
+//     legendary: 1,
+//   },
+//   mh_o4: {
+//     common: 2,
+//     uncommon: 2,
+//     rare: 1,
+//     superrare: 0,
+//     legendary: 1,
+//   },
+// };
+
 const totalSupply = {
   mh: {
     common: 2440,
