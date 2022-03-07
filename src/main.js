@@ -1,13 +1,13 @@
 const fs = require("fs");
 const { createCanvas, loadImage } = require("canvas");
 const console = require("console");
-const { layersOrder, format, rarity, defaultEdition } = require("./config.js");
+const { layersOrder, format, rarity } = require("./config.js");
+const { generate } = require("./generate.js");
 
 const canvas = createCanvas(format.width, format.height);
 const ctx = canvas.getContext("2d");
 
 let initialMetaData = [];
-let hashValue = {};
 
 if (!process.env.PWD) {
   process.env.PWD = process.cwd();
@@ -140,40 +140,10 @@ function shuffleArray(array) {
   }
 }
 
-const generateRandomElement = () => {
-  const layers = layersSetup(layersOrder);
-  const hash = require("object-hash");
-
-  let tmpElements = [];
-
-  do {
-    layers.forEach((layer) => {
-      let rand = Math.random();
-      let num = Math.floor(rand * layer.number);
-
-      let tempAttr = {
-        id: num,
-        layer: layer.name,
-        name: layer.elements[num].name,
-      };
-
-      tmpElements.push(tempAttr);
-    });
-
-    if (initialMetaData.length >= defaultEdition) break;
-    if (hashValue[hash(tmpElements)]) continue;
-    hashValue[hash(tmpElements)] = true;
-    initialMetaData.push([...tmpElements]);
-    console.log(tmpElements, initialMetaData.length);
-
-    tmpElements = [];
-  } while (1);
-};
-
 const createFiles = async (edition) => {
-  await generateRandomElement();
-
+  initialMetaData = await generate();
   await shuffleArray(initialMetaData);
+  initialMetaData = initialMetaData.slice(0, edition);
 
   const layers = layersSetup(layersOrder);
 

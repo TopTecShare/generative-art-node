@@ -1,8 +1,12 @@
 const layersOrder = [
-  { name: "Backgrounds" },
-  { name: "Body" },
-  { name: "Shell" },
-  { name: "Head" },
+  { name: "Background" },
+  { name: "Back Left" },
+  { name: "Back Right" },
+  { name: "Bottom" },
+  { name: "Sphere" },
+  { name: "Front Left" },
+  { name: "Front Right" },
+  { name: "Top" },
 ];
 
 const format = {
@@ -17,6 +21,6 @@ const rarity = [
   { key: "rare", val: 0.1 },
 ];
 
-const defaultEdition = 10;
+const defaultEdition = 1728;
 
 module.exports = { layersOrder, format, rarity, defaultEdition };
