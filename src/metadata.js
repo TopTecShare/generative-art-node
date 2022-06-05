@@ -8,7 +8,7 @@ if (!process.env.PWD) {
 const metadataDir = `${process.env.PWD}/build/metadata`;
 
 const ipfs =
-  "https://ipfs.io/ipfs/QmNYYQLYfeVHAZ9Twanq1VP4y29gg215oYEwLRQSocr92h/";
+  "https://gateway.pinata.cloud/ipfs/QmNYYQLYfeVHAZ9Twanq1VP4y29gg215oYEwLRQSocr92h/";
 metadata.map((data) => {
   let attributes = [];
   data.attributes.map((e) => {
