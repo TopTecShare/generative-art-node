@@ -2,7 +2,7 @@ const fs = require("fs");
 const { createCanvas, loadImage } = require("canvas");
 const console = require("console");
 const { layersOrder, format, rarity } = require("./config.js");
-const { generate } = require("./generate.js");
+const { generate, getRarity } = require("./generate.js");
 
 const canvas = createCanvas(format.width, format.height);
 const ctx = canvas.getContext("2d");
@@ -24,26 +24,6 @@ let attributes = [];
 let hash = [];
 let decodedHash = [];
 
-const addRarity = (_str) => {
-  let itemRarity;
-
-  rarity.forEach((r) => {
-    if (_str.includes(r.key)) {
-      itemRarity = r.val;
-    }
-  });
-
-  return itemRarity;
-};
-
-const cleanName = (_str) => {
-  let name = _str.slice(0, -4);
-  rarity.forEach((r) => {
-    name = name.replace(r.key, "");
-  });
-  return name;
-};
-
 const getElements = (path) => {
   return fs
     .readdirSync(path)
@@ -51,9 +31,9 @@ const getElements = (path) => {
     .map((i, index) => {
       return {
         id: index + 1,
-        name: cleanName(i),
+        name: i.split(".")[0],
         fileName: i,
-        rarity: addRarity(i),
+        rarity: getRarity(i),
       };
     });
 };
@@ -83,7 +63,7 @@ const buildSetup = () => {
 
 const saveLayer = (_canvas, _edition) => {
   fs.writeFileSync(
-    `${buildDir}/${_edition}.png`,
+    `${imageDir}/${_edition}.png`,
     _canvas.toBuffer("image/png")
   );
 };
@@ -118,10 +98,10 @@ const addAttributes = (_element, _layer) => {
 
 const drawLayer = async (_layer, _edition, _element) => {
   let element = _element;
-  console.log(element);
+  // console.log(element);
 
   addAttributes(element, _layer);
-  const image = await loadImage(`${_layer.location}${element.name}.png`);
+  const image = await loadImage(`${_layer.location}${element.name}`);
 
   ctx.drawImage(
     image,
@@ -141,14 +121,14 @@ function shuffleArray(array) {
 }
 
 const createFiles = async (edition) => {
-  initialMetaData = await generate();
+  initialMetaData = generate();
   await shuffleArray(initialMetaData);
   initialMetaData = initialMetaData.slice(0, edition);
 
   const layers = layersSetup(layersOrder);
 
   for (let i = 1; i <= edition; i++) {
-    console.log(initialMetaData[i - 1]);
+    // console.log(initialMetaData[i - 1]);
     await layers.forEach(async (layer) => {
       let element = initialMetaData[i - 1].filter(
         (x) => x.layer == layer.name
