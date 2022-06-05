@@ -16,6 +16,7 @@ if (!process.env.PWD) {
 const buildDir = `${process.env.PWD}/build`;
 const imageDir = `${process.env.PWD}/build/images`;
 const metadataDir = `${process.env.PWD}/build/metadata`;
+const metadataUnDir = `${process.env.PWD}/build/metadata_unrevealed`;
 const metDataFile = "_metadata.json";
 const layersDir = `${process.env.PWD}/layers`;
 
@@ -59,6 +60,7 @@ const buildSetup = () => {
   fs.mkdirSync(buildDir);
   fs.mkdirSync(imageDir);
   fs.mkdirSync(metadataDir);
+  fs.mkdirSync(metadataUnDir);
 };
 
 const saveLayer = (_canvas, _edition) => {

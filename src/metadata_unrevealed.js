@@ -5,10 +5,10 @@ if (!process.env.PWD) {
   process.env.PWD = process.cwd();
 }
 
-const metadataDir = `${process.env.PWD}/build/metadata`;
+const metadataDir = `${process.env.PWD}/build/metadata_unrevealed`;
 
 const ipfs =
-  "https://ipfs.io/ipfs/QmNYYQLYfeVHAZ9Twanq1VP4y29gg215oYEwLRQSocr92h/";
+  "https://gateway.pinata.cloud/ipfs/QmNTAGnpKrBDLaBTbpu5K1tax5gk1mKN1KS5cZGB1nAmAG";
 metadata.map((data) => {
   let attributes = [];
   data.attributes.map((e) => {
@@ -24,8 +24,8 @@ metadata.map((data) => {
     description:
       "AAAUUUGHHH goblins pets GOBLINNNns ReKa ma pet uhha snackRik URAH",
     external_url: "",
-    image: `${ipfs}${data.edition}.png`,
-    attributes,
+    image: `${ipfs}`,
+    attributes: [],
     properties: {
       category: "image",
       files: [{ uri: `${data.edition}.png`, type: "image/png" }],
